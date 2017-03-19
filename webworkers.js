@@ -2,6 +2,7 @@
 this.addEventListener('message', function(e) {
   var data = e.data;
   var n = 1;
+  var num=0;
   primelist = "";
   search: while (n<data) {
     n += 1;
@@ -10,6 +11,13 @@ this.addEventListener('message', function(e) {
         continue search;
   // found a prime!
     primelist += " " + n;
-    self.postMessage(primelist);
+    i++;
+
+    if(num==300){
+      self.postMessage(primelist);
+      primelist="";
+      num=0;
+    }
   }
+  self.postMessage(primelist);
 }, false);
